@@ -82,7 +82,7 @@ export default Mount;
 
 ```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import React, { useState } from 'react';
+import React, { StrictMode, useState } from 'react';
 import { Map, APILoader, Marker } from '@uiw/react-amap';
 
 const Example = () => {
@@ -107,10 +107,11 @@ const Example = () => {
               // 设置文本标注方位
               direction: 'right'
             }}
-            position={new AMap.LngLat(117.283042,31.86119)}
+            position={new AMap.LngLat(117.283042, 31.86119)}
           />
           <Marker
             visiable={show}
+            key={count}
             title="北京市"
             label={{
               // 设置文本标注内容
@@ -121,7 +122,7 @@ const Example = () => {
             draggable
             bubble={true}
             // content="<div>我是 marker 的 label 标签</div>"
-            position={new AMap.LngLat(113.280637,23.125178)}
+            position={new AMap.LngLat(113.280637, 23.125178)}
           >
             <div
               style={{
@@ -147,9 +148,11 @@ const Example = () => {
 }
 
 const Mount = () => (
-  <APILoader akey="a7a90e05a37d3f6bf76d4a9032fc9129">
-    <Example />
-  </APILoader>
+  <StrictMode>
+    <APILoader akey="a7a90e05a37d3f6bf76d4a9032fc9129">
+      <Example />
+    </APILoader>
+  </StrictMode>
 );
 
 export default Mount;
